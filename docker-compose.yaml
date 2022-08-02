@@ -6,17 +6,29 @@ services:
     ports:
       - 5000:5000
     environment:
-      - DEBUG=1
+      - DEBUG=0
     networks:
-      - flask_network
+      - airbnb_network
 
-    proxy:
-      build: proxy
-      restart: always
-      ports:
-        - 80:80
-      networks:
-        - flask-network
+  proxy:
+    build: proxy
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - airbnb_network
+  db:
+    build: db
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - airbnb_network
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
 
-  networks:
-    flask-network:
+networks:
+  airbnb_network:
+
+volumes:
+  postgres_db:

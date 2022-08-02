@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ITP499</title>
+    </head>
+    <body>
+        <h1>Airbnb Statistics</h1>
+        <h2>See region-specific data</h2>
+        <form action="/action/location" method="POST">
+            <input type="location" name="location" placeholder="Choose a location around LA">
+            <input type="hidden" name="amount" value=1000 />
+            <br>
+            <input type="submit" value="Select">
+        </form>
+        <h2>Predict price</h2>
+        <form action="/action/predict" method="POST">
+            <input type="latitude" name="latitude" placeholder = "Latitude"required>
+            <input type="longitude" name="longitude" placeholder = "Longitude" required>
+            <input type="nights" name="minimum_nights" placeholder = "Minimum stay" required>
+            <input type="count" name="count" placeholder = "Number of listings" required>
+            <input type="avail" name="avail" placeholder = "Availability/365 days" required>
+            <br></br>
+            <input type="radio" name="room_type" value = "0" required>Entire home/apt
+            <input type="radio" name="room_type" value = "1">Private room
+            <input type="radio" name="room_type" value = "2">Hotel room
+            <input type="radio" name="room_type" value = "3">Shared room
+            <br></br>
+            <input type="submit" value="Predict">
+
+        </form>
+    </body>
+</html>

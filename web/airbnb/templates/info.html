@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ITP499</title>
+    </head>
+    <body>
+        <form action="/action/location" method="POST">
+                <input type="location" name="location" placeholder="Choose a location">
+                <input type="hidden" name="amount" value=1000 />
+                <input type="submit" value="Select">
+                <form action="url_for('home')">
+                    <input type="submit" value="Go back" />
+                </form>
+        </form>
+        <h1>{{ location }}</h1>
+        <p>There are {{ number }} properties in {{ location }} </p>
+        <p>Average nightly price is {{ price }}! </p>
+        <p>Average availability per year is {{ days }} days! </p>
+        <strong>Visualize rent prices</strong>
+        <form action="/action/location" method="POST">
+            <input type="hidden" name="location" value="{{ location }}" />
+            <input type="amount" name = "amount" required placeholder = "1000">
+            <input type="submit" value="Select">
+        </form>
+        <img src="{{ url_for('visualize', loc=location, above=amount) }}">
+    </body>
+</html>
