@@ -51,8 +51,9 @@ def visualize(loc, above):
     fig, ax = plt.subplots(1, 1)
     room_types = [0, 1, 2, 3]
     for r in room_types:
-        param = (r, float(above), loc,)
-        data = db.engine.execute("SELECT price from listings WHERE room_type = ? AND price <= (%s) AND neighbourhood = (%s)",
+        param = (r, int(above), loc,)
+        print(param)
+        data = db.engine.execute("SELECT price from listings WHERE room_type = (%s) AND price <= (%s) AND neighbourhood = (%s)",
                             param)
         prices = [item for tuple in data.fetchall() for item in tuple]
         print(prices)
@@ -64,8 +65,9 @@ def visualize(loc, above):
     plt.tight_layout()
     plt.legend(['Existing home/apt', 'Hotel room', 'Private room', 'Shared room'])
     img_bytes = BytesIO()
-    fig.savefig(img_bytes)
+    plt.savefig(img_bytes)
     img_bytes.seek(0)
+
     return send_file(img_bytes, mimetype='image/png')
 
 
