@@ -1,7 +1,7 @@
-version: "3.7"
+version: "3"
 services:
   web:
-    build: web
+    image: public.ecr.aws/c5t5r6r7/airbnb-flask:web
     restart: always
     ports:
       - 5000:5000
@@ -11,14 +11,15 @@ services:
       - airbnb_network
 
   proxy:
-    build: proxy
+    image: public.ecr.aws/c5t5r6r7/airbnb-flask:proxy
     restart: always
     ports:
       - 80:80
     networks:
       - airbnb_network
+
   db:
-    build: db
+    image: public.ecr.aws/c5t5r6r7/airbnb-flask:db
     restart: always
     ports:
       - 5432:5432
